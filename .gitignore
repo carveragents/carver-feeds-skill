@@ -1,0 +1,24 @@
+# Python virtual environment
+.venv/
+venv/
+*.pyc
+__pycache__/
+
+# Environment variables
+.env
+
+# IDE and OS files
+.DS_Store
+.claude/
+*.swp
+*.swo
+*~
+
+# Internal development documentation
+CLAUDE.md
+
+# Packaged skill
+*.zip
+
+# Git directory (for packaged distributions)
+.git/
