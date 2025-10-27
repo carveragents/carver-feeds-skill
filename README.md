@@ -2,7 +2,7 @@
 
 A [Claude Code skill](https://www.anthropic.com/news/skills) that enables natural language querying of regulatory feed data from the Carver API. Search, filter, and analyze regulatory updates across topics like Banking, Healthcare, Energy, and more—directly within Claude Code.
 
-## What is This?
+## 📖 What is This?
 
 This skill integrates the [carver-feeds-sdk](https://github.com/carveragents/carver-feeds-sdk) into Claude Code, allowing you to query regulatory intelligence data using natural language instead of writing Python scripts.
 
@@ -26,7 +26,7 @@ You: "Show me banking regulations from the last 7 days mentioning compliance"
 Claude: [Automatically runs the query and saves results.csv to your directory]
 ```
 
-## Why Use This Skill?
+## ✨ Why Use This Skill?
 
 The Carver Feeds API provides real-time regulatory monitoring across global jurisdictions. This skill makes that data accessible without:
 - Writing Python code manually
@@ -40,7 +40,7 @@ Perfect for:
 - **Legal teams** researching historical regulatory updates
 - **Developers** prototyping compliance monitoring tools
 
-## Prerequisites
+## ✅ Prerequisites
 
 1. **Python 3.10** (required by carver-feeds-sdk)
    ```bash
@@ -58,7 +58,7 @@ Perfect for:
    - Get your free API key at [https://app.carveragents.ai](https://app.carveragents.ai)
    - The skill will prompt you to add it on first use
 
-## Installation
+## 📦 Installation
 
 ```bash
 # Clone to your Claude Code skills directory
@@ -68,7 +68,7 @@ git clone https://github.com/carveragents/carver-feeds-skill.git
 
 That's it! The skill will be available the next time you start Claude Code.
 
-## Quick Start
+## 🚀 Quick Start
 
 1. **Navigate to your working directory**
    ```bash
@@ -88,11 +88,11 @@ That's it! The skill will be available the next time you start Claude Code.
    - JSON files for structured output
    - All outputs in your project folder, not the skill directory
 
-## Common Use Cases
+## 💼 Common Use Cases
 
 ### Monitor Specific Topics
 ```
-"Show me recent updates for Banking and Healthcare topics"
+"Show me recent updates for Banking and FinTech topics"
 ```
 
 ### Keyword Search
@@ -117,27 +117,21 @@ That's it! The skill will be available the next time you start Claude Code.
 
 ### Daily Briefing
 ```
-"Generate a daily regulatory brief for Banking and Insurance topics"
+"Generate a weekly regulatory brief for Banking and Insurance topics and include sources for all updates"
 ```
 
-## How It Works
+## ⚙️ How It Works
 
 1. **Auto-initialization**: On first use, the skill:
    - Finds/creates a Python 3.10 virtual environment
    - Installs carver-feeds-sdk
-   - Checks for your API key in `.env`
+   - Prompts you for your API key to add it to `.env`
 
-2. **Environment setup**: Your API key is stored in `.env` in your working directory:
-   ```env
-   CARVER_API_KEY=your_api_key_here
-   CARVER_BASE_URL=https://app.carveragents.ai
-   ```
+2. **Query execution**: Claude translates your natural language requests into SDK queries
 
-3. **Query execution**: Claude translates your natural language requests into SDK queries
+3. **Output**: Results saved to your current directory (CSV, JSON, or DataFrame)
 
-4. **Output**: Results saved to your current directory (CSV, JSON, or DataFrame)
-
-## Data Hierarchy
+## 🗂️ Data Hierarchy
 
 ```
 Topic (e.g., "Banking Regulation")
@@ -147,13 +141,13 @@ Topic (e.g., "Banking Regulation")
         └── Entry (individual article/post)
 ```
 
-## Documentation
+## 📚 Documentation
 
 - **[SKILL.md](SKILL.md)** - Complete skill documentation and workflows
 - **[API Reference](references/api_reference.md)** - Detailed SDK method signatures
 - **[Usage Examples](references/usage_examples.md)** - Practical code examples
 
-## Troubleshooting
+## 🔧 Troubleshooting
 
 ### Python 3.10 Not Found
 The skill requires Python 3.10+. Install it:
@@ -171,26 +165,26 @@ sudo apt-get install python3.10
 - Check for typos in the key
 
 ### Slow Queries
-- Ask Claude to filter by topic/feed before loading all entries
+- Try asking Claude to filter by topic/feed before loading all entries
 - Use date ranges to limit results
 
-## Related Projects
+## 🔗 Related Projects
 
 - **[carver-feeds-sdk](https://github.com/carveragents/carver-feeds-sdk)** - The underlying Python SDK
-- **[Carver Platform](https://app.carveragents.ai)** - Web interface for regulatory monitoring
+- **[Carver Agents Platform](https://app.carveragents.ai)** - Web interface for regulatory monitoring
 
-## License
+## 📄 License
 
 MIT License - see [LICENSE](LICENSE) for details
 
-## Contributing
+## 🤝 Contributing
 
 Contributions welcome! Please:
 1. Fork the repository
 2. Create a feature branch
 3. Submit a pull request
 
-## Support
+## 💬 Support
 
 - **Issues**: [GitHub Issues](https://github.com/carveragents/carver-feeds-skill/issues)
 - **API Docs**: [https://app.carveragents.ai/api-docs/](https://app.carveragents.ai/api-docs/)
