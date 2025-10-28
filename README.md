@@ -45,7 +45,7 @@ Perfect for:
 1. **Python 3.10** (required by carver-feeds-sdk)
    ```bash
    # Check your version
-   python3.10 --version
+   python --version
 
    # macOS installation
    brew install python@3.10
@@ -75,7 +75,7 @@ That's it! The skill will be available the next time you start Claude Code.
    cd /path/to/your/project
    ```
 
-2. **Query regulatory data with natural language**
+2. **Query regulatory data with natural language in Claude**
    ```
    "Show me all healthcare regulations from the last 30 days"
    "Search for banking regulations mentioning 'capital requirements'"
@@ -127,14 +127,14 @@ That's it! The skill will be available the next time you start Claude Code.
    - Installs carver-feeds-sdk
    - Prompts you for your API key to add it to `.env`
 
-2. **Query execution**: Claude translates your natural language requests into SDK queries
+2. **Query execution**: Claude takes your natural language requests and uses this skill to translate into SDK commands
 
 3. **Output**: Results saved to your current directory (CSV, JSON, or DataFrame)
 
 ## 🗂️ Data Hierarchy
 
 ```
-Topic (e.g., "Banking Regulation")
+Topic (e.g., "SEC")
   ├── Feed (e.g., "SEC News Feed")
   │     └── Entry (individual article/post)
   └── Feed (e.g., "Federal Reserve Updates")
