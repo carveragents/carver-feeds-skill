@@ -112,7 +112,7 @@ That's it! The skill will be available the next time you start Claude Code.
 
 ### Compare Activity
 ```
-"Compare regulatory activity across Banking, Healthcare, and Energy over the last quarter"
+"Compare regulatory activity across Banking, Insurance, and Consumer Protection over the last quarter"
 ```
 
 ### Daily Briefing
