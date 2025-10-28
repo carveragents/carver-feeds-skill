@@ -13,6 +13,9 @@ Architecture:
 - .env file MUST be in the user's current working directory (CWD)
 - All outputs are saved to CWD
 
+Requirements:
+- Python 3.10, 3.11, or 3.12 (required by carver-feeds-sdk)
+
 Usage:
     python /path/to/skill/scripts/auto_init.py [cwd_path]
 
@@ -52,14 +55,26 @@ def get_venv_python(venv_path):
     return venv_path / "bin" / "python"
 
 
-def find_python310():
-    """Find Python 3.10 executable."""
-    # Try common Python 3.10 locations
+def find_compatible_python():
+    """Find Python 3.10, 3.11, or 3.12 executable.
+
+    Returns:
+        Tuple of (python_path, version_string) or (None, None) if not found
+    """
+    # Try common Python locations, preferring newer versions
     candidates = [
+        "python3.12",
+        "python3.11",
         "python3.10",
         "python3",
+        "/usr/bin/python3.12",
+        "/usr/bin/python3.11",
         "/usr/bin/python3.10",
+        "/usr/local/bin/python3.12",
+        "/usr/local/bin/python3.11",
         "/usr/local/bin/python3.10",
+        "/opt/homebrew/bin/python3.12",
+        "/opt/homebrew/bin/python3.11",
         "/opt/homebrew/bin/python3.10",
     ]
 
@@ -71,40 +86,43 @@ def find_python310():
                 text=True,
                 timeout=5
             )
-            if result.returncode == 0 and "Python 3.10" in result.stdout:
-                return candidate
+            if result.returncode == 0:
+                version_output = result.stdout.strip()
+                # Check for Python 3.10, 3.11, or 3.12
+                if any(f"Python 3.{minor}" in version_output for minor in [10, 11, 12]):
+                    return candidate, version_output
         except Exception:
             continue
 
-    return None
+    return None, None
 
 
 def ensure_venv():
-    """Ensure venv exists, create if it doesn't using Python 3.10."""
+    """Ensure venv exists, create if it doesn't using compatible Python version."""
     venv_path = get_venv_path()
 
     if venv_path.exists():
         return get_venv_python(venv_path)
 
-    print("Creating virtual environment with Python 3.10...")
+    print("Creating virtual environment...")
 
-    # Find Python 3.10
-    python310 = find_python310()
-    if not python310:
-        print("\nERROR: Python 3.10 is required but not found.")
-        print("\nThe carver-feeds-sdk requires Python 3.10.")
-        print("\nPlease install Python 3.10:")
-        print("  - macOS: brew install python@3.10")
-        print("  - Ubuntu: sudo apt install python3.10")
+    # Find compatible Python version
+    python_exe, version = find_compatible_python()
+    if not python_exe:
+        print("\nERROR: Python 3.10, 3.11, or 3.12 is required but not found.")
+        print("\nThe carver-feeds-sdk requires Python 3.10+.")
+        print("\nPlease install a compatible Python version:")
+        print("  - macOS: brew install python@3.12")
+        print("  - Ubuntu: sudo apt install python3.12")
         print("  - Windows: Download from python.org")
         sys.exit(1)
 
-    print(f"✓ Found Python 3.10: {python310}")
+    print(f"✓ Found compatible Python: {version}")
 
     try:
-        # Create venv using Python 3.10
+        # Create venv using compatible Python
         subprocess.check_call(
-            [python310, "-m", "venv", str(venv_path)],
+            [python_exe, "-m", "venv", str(venv_path)],
             timeout=60
         )
         print("✓ Virtual environment created")

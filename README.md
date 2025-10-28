@@ -42,16 +42,16 @@ Perfect for:
 
 ## ✅ Prerequisites
 
-1. **Python 3.10** (required by carver-feeds-sdk)
+1. **Python 3.10, 3.11, or 3.12** (required by carver-feeds-sdk)
    ```bash
    # Check your version
-   python --version
+   python3 --version
 
    # macOS installation
-   brew install python@3.10
+   brew install python@3.12
 
    # Ubuntu/Debian
-   sudo apt-get install python3.10
+   sudo apt-get install python3.12
    ```
 
 2. **Carver API Key**
@@ -123,7 +123,7 @@ That's it! The skill will be available the next time you start Claude Code.
 ## ⚙️ How It Works
 
 1. **Auto-initialization**: On first use, the skill:
-   - Finds/creates a Python 3.10 virtual environment
+   - Finds/creates a compatible Python virtual environment (3.10, 3.11, or 3.12)
    - Installs carver-feeds-sdk
    - Prompts you for your API key to add it to `.env`
 
@@ -149,14 +149,14 @@ Topic (e.g., "SEC")
 
 ## 🔧 Troubleshooting
 
-### Python 3.10 Not Found
-The skill requires Python 3.10+. Install it:
+### Compatible Python Version Not Found
+The skill requires Python 3.10, 3.11, or 3.12. Install a compatible version:
 ```bash
 # macOS
-brew install python@3.10
+brew install python@3.12
 
 # Ubuntu/Debian
-sudo apt-get install python3.10
+sudo apt-get install python3.12
 ```
 
 ### API Key Issues

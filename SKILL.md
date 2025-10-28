@@ -1,6 +1,6 @@
 ---
 name: carver-feeds-skill
-description: Access and query regulatory feed data from the Carver API. Use when searching, filtering, or analyzing regulatory updates across topics like Banking, Healthcare, Energy, etc. Enables keyword searches, date-based filtering, topic/feed comparisons, and multi-format exports (CSV, JSON, DataFrame).
+description: Access and query regulatory feed data from the Carver API. Use when searching, filtering, or analyzing regulatory updates from various regulatory bodies. Enables keyword searches, date-based filtering, topic/feed comparisons, and multi-format exports (CSV, JSON, DataFrame).
 ---
 
 # Carver Regulatory Feeds
@@ -20,9 +20,9 @@ This skill provides access to the Carver Feeds API, a regulatory intelligence pl
 
 Use when the user requests:
 - "Find recent banking regulations about cryptocurrency"
-- "Search for healthcare compliance updates"
+- "Search for fintech compliance updates"
 - "Export SEC news feed entries to CSV"
-- "Compare regulatory activity across banking and healthcare"
+- "Compare regulatory activity across banking and insurance"
 - "What regulatory topics are available?"
 - "Show me all entries from a specific feed"
 
@@ -35,7 +35,7 @@ Use when the user requests:
 The skill uses a dual-location approach:
 
 **Skill Directory** (`~/.claude/skills/carver-feeds-skill`):
-- `.venv/` - Python 3.10 virtual environment (shared across projects)
+- `.venv/` - Python 3.10, 3.11, 3.12 virtual environment (shared across projects)
 - `scripts/` - Helper scripts
 - `references/` - Documentation
 
@@ -45,9 +45,9 @@ The skill uses a dual-location approach:
 
 ### Requirements
 
-- **Python 3.10 is REQUIRED** - The carver-feeds-sdk only works with Python 3.10
-- The script will automatically find and use Python 3.10 to create the venv
-- If Python 3.10 is not found, the script will exit with installation instructions
+- **Python 3.10, 3.11, or 3.12 is REQUIRED** - The carver-feeds-sdk requires Python 3.10+
+- The script will automatically find and use a compatible Python version to create the venv
+- If no compatible Python is found, the script will exit with installation instructions
 - **`.env` file MUST be in your current working directory** (not in the skill directory)
 
 ### Initialization Process
@@ -65,8 +65,8 @@ python /path/to/skill/scripts/auto_init.py $(pwd)
 ```
 
 The script will:
-1. Find Python 3.10 on the system (exits if not found)
-2. Create or use existing venv with Python 3.10 in skill directory
+1. Find Python 3.10, 3.11, or 3.12 on the system (exits if not found)
+2. Create or use existing venv with Python 3.10, 3.11, or 3.12 in skill directory
 3. Upgrade pip to latest version
 4. Install carver-feeds-sdk if not present
 5. Check for .env file with CARVER_API_KEY in CWD (not skill directory!)
@@ -139,40 +139,7 @@ print(f'Saved {len(results)} results to banking_results.csv')
 - ALWAYS save outputs to CWD (not skill directory)
 - If initialization fails, DO NOT proceed with queries
 
-## Setup
-
-**NOTE:** The auto_init.py script (described above) handles all setup automatically. The information below is for reference only.
-
-### Manual Setup (Alternative)
-
-If you need to set up manually without using auto_init.py:
-
-**Requirements:**
-- Python 3.10 is REQUIRED for carver-feeds-sdk
-
-1. Create and activate a virtual environment with Python 3.10:
-```bash
-python3.10 -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-```
-
-2. Upgrade pip and install the SDK:
-```bash
-pip install --upgrade pip
-pip install carver-feeds-sdk
-```
-
-3. Create a `.env` file with your API key:
-```bash
-CARVER_API_KEY=your_api_key_here
-CARVER_BASE_URL=https://app.carveragents.ai  # optional
-```
-
-4. Get API key from: https://app.carveragents.ai
-
-### Old Setup Script (Deprecated)
-
-The `scripts/setup_environment.py` script is deprecated. Use `scripts/auto_init.py` instead, which handles Python 3.10 requirement automatically.
+**For detailed setup instructions, troubleshooting, and manual setup alternatives, see `references/setup_guide.md`.**
 
 ## Core Workflows
 
@@ -287,10 +254,10 @@ from carver_feeds import create_query_engine
 qe = create_query_engine()
 
 banking = qe.filter_by_topic(topic_name="Banking").to_dataframe()
-healthcare = qe.chain().filter_by_topic(topic_name="Healthcare").to_dataframe()
+insurance = qe.chain().filter_by_topic(topic_name="Insurance").to_dataframe()
 
 print(f"Banking: {len(banking)} entries")
-print(f"Healthcare: {len(healthcare)} entries")
+print(f"Insurance: {len(insurance)} entries")
 ```
 
 **Important:** Use `chain()` to reset the query engine between different filters.
@@ -317,7 +284,7 @@ topics = list_available_topics()
 results = search_by_keyword("regulation", topic_name="Banking", days_back=30)
 
 # Example: Daily brief
-brief = daily_regulatory_brief(topics=["Banking", "Healthcare"])
+brief = daily_regulatory_brief(topics=["Banking", "Insurance"])
 ```
 
 Available templates:
@@ -440,21 +407,22 @@ Entry (individual article/post)
 
 ### Bundled Scripts
 
-- `scripts/setup_environment.py` - Environment setup and verification
+- `scripts/auto_init.py` - Automatic environment initialization and setup
 - `scripts/query_templates.py` - Pre-built query patterns for common use cases
 
 ### Reference Documentation
 
-For detailed API specifications and examples, load reference files as needed:
+For detailed information beyond core workflows, load reference files as needed:
 
+- `references/setup_guide.md` - Detailed setup instructions, troubleshooting, manual installation, environment configuration
 - `references/api_reference.md` - Complete API method signatures, parameters, and data schemas
 - `references/usage_examples.md` - 10+ practical examples for common workflows
 
 **When to load references:**
-- Need detailed method signatures or parameters
-- Want to see more code examples
-- Need data schema specifications
-- Troubleshooting specific API behaviors
+- Setup issues or manual installation needed → `setup_guide.md`
+- Need detailed method signatures or parameters → `api_reference.md`
+- Want to see more code examples → `usage_examples.md`
+- Troubleshooting specific API behaviors → `setup_guide.md` or `api_reference.md`
 
 ### External Resources
 
