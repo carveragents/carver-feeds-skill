@@ -1,5 +1,8 @@
 # Carver Feeds Skill for Claude Code
 
+![GitHub Release](https://img.shields.io/github/v/release/carveragents/carver-feeds-skill)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A [Claude Code skill](https://www.anthropic.com/news/skills) that enables natural language querying of regulatory feed data from the Carver API. Search, filter, and analyze regulatory updates across topics like Banking, Healthcare, Energy, and more—directly within Claude Code.
 
 ## 📖 What is This?
