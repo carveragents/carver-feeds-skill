@@ -42,23 +42,10 @@ Perfect for:
 
 ## ✅ Prerequisites
 
-1. **Python 3.10, 3.11, or 3.12** (required by carver-feeds-sdk)
-   ```bash
-   # Check your version
-   python3 --version
-
-   # macOS installation
-   brew install python@3.12
-
-   # Ubuntu/Debian
-   sudo apt-get install python3.12
-   ```
-
-2. **Carver API Key**
+**Carver API Key**
    - Get your free API key at [https://app.carveragents.ai](https://app.carveragents.ai)
    - The skill will prompt you to add it on first use
 
-> Note: The skill will automatically initialize a compatible Python virtual environment (3.10, 3.11, or 3.12) and install carver-feeds-sdk on first use. It will also prompt you to add your API key to a `.env` file in your current directory. No coding required. 
 
 ## 📦 Installation
 
@@ -79,6 +66,19 @@ The skill will be available immediately in Claude Web and Claude Desktop.
 
 ### For Claude Code
 
+> Note: Python 3.10, 3.11, or 3.12 (required by carver-feeds-sdk)
+
+```bash
+# Check your version
+python3 --version
+
+# macOS installation
+brew install python@3.12
+
+# Ubuntu/Debian
+sudo apt-get install python3.12
+```
+
 ```bash
 # Clone to your Claude Code skills directory
 cd ~/.claude/skills
@@ -87,18 +87,15 @@ git clone https://github.com/carveragents/carver-feeds-skill.git
 
 The skill will be available the next time you start Claude Code.
 
-### Using the skill
+## 💬 Using the Skill
 
-Anytime you ask Claude (Code, Web, Desktop) about regulatory data, it will use this skill. If you have trouble getting Claude to use the skill, you can always ask Claude to use the skill explicitly by prefixing your query with `ask carver to ...`.
+> Note: The skill will automatically initialize a compatible Python virtual environment (3.10, 3.11, or 3.12) and install carver-feeds-sdk on first use. It will also prompt you to add your API key to a `.env` file in your current directory. No coding required. 
 
-## 🚀 Quick Start [Claude Code]
+- **Claude will auto-trigger the skill** 
+   - Anytime you ask Claude (Code, Web, Desktop) about regulatory data, it will use this skill. 
+   - If you have trouble getting Claude to use the skill, you can always ask Claude to use the skill explicitly by prefixing your query with `ask carver to ...`.
 
-1. **Navigate to your working directory**
-   ```bash
-   cd /path/to/your/project
-   ```
-
-2. **Query regulatory data with natural language in Claude**
+- **Query regulatory data with natural language in Claude**
    ```
    "Show me all healthcare regulations from the last 30 days"
    "Search for banking regulations mentioning 'capital requirements'"
@@ -106,7 +103,7 @@ Anytime you ask Claude (Code, Web, Desktop) about regulatory data, it will use t
    "Export energy sector updates to CSV"
    ```
 
-3. **Results are saved to your current directory**
+- **[Claude Code] Results are saved to your current directory**
    - CSV files for data exports
    - JSON files for structured output
    - All outputs in your project folder, not the skill directory
