@@ -58,7 +58,26 @@ Perfect for:
    - Get your free API key at [https://app.carveragents.ai](https://app.carveragents.ai)
    - The skill will prompt you to add it on first use
 
+> Note: The skill will automatically initialize a compatible Python virtual environment (3.10, 3.11, or 3.12) and install carver-feeds-sdk on first use. It will also prompt you to add your API key to a `.env` file in your current directory. No coding required. 
+
 ## 📦 Installation
+
+### For Claude Web (claude.ai) and Claude Desktop
+
+1. Download the latest `carver-feeds-skill.zip` from [Carver Feeds Skill GitHub Releases](https://github.com/carveragents/carver-feeds-skill/releases)
+2. Install the skill by following these steps:
+   - Go to Settings → Capabilities → Skills
+   - Click **"Upload skill"**
+   - Select the downloaded zip file
+   - Enable the **carver-feeds-skill** toggle
+3. Give the skill required permissions by following these steps:
+   - Go to Settings → Capabilities → Allow network egress
+   - Enable the **Give Claude network access ...** toggle
+   - Add ***.carveragents.ai** as an allowed domain
+
+The skill will be available immediately in Claude Web and Claude Desktop. 
+
+### For Claude Code
 
 ```bash
 # Clone to your Claude Code skills directory
@@ -66,9 +85,13 @@ cd ~/.claude/skills
 git clone https://github.com/carveragents/carver-feeds-skill.git
 ```
 
-That's it! The skill will be available the next time you start Claude Code.
+The skill will be available the next time you start Claude Code.
 
-## 🚀 Quick Start
+### Using the skill
+
+Anytime you ask Claude (Code, Web, Desktop) about regulatory data, it will use this skill. If you have trouble getting Claude to use the skill, you can always ask Claude to use the skill explicitly by prefixing your query with `ask carver to ...`.
+
+## 🚀 Quick Start [Claude Code]
 
 1. **Navigate to your working directory**
    ```bash
@@ -192,4 +215,4 @@ Contributions welcome! Please:
 
 ---
 
-**Note**: This is a Claude Code skill, not a standalone application. It requires [Claude Code](https://claude.ai/code) to function.
+**Note**: This is a Claude skill that works with both [Claude Web](https://claude.ai) and [Claude Code](https://claude.ai/code). It is not a standalone application.
